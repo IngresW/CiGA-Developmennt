@@ -16,11 +16,32 @@ const Tiles_pic = [
 	preload("res://Assets/Object/tile_7.jpg"),
 ]
 
+# 在此处修改随机权重
+const Tile_React_Weights = [
+	[  0  ,0,  0,  0,  0,  0,  0,  0],
+	[100,  0, 20, 20, 10,100,  0,  0],
+	[100,  0,  0,  0,  0, 70,  0,  0],
+	[100, 20, 10,  0, 20, 20,  0, 20],
+	[100, 10, 20, 20,  0,  0,  0,  0],
+	[100,  0,  0, 20,  0,  0,100, 70],
+	[100,100,100,100,100,100,100,100],
+	[100, 50, 20, 20, 50, 30,  0,  0],
+]
+
+#在此处修改规则
+const Tile_React_Rules = [
+	[-1, 0, 0, 0, 0, 0, 0, 0],
+	[ 0,-1, 2, 2, 4, 5, 1, 1],
+	[ 7, 2,-1, 2, 2, 5, 2, 2],
+	[ 6, 2, 3,-1, 1, 5, 3, 1],
+	[ 6, 1, 4, 1,-1, 4, 4, 4],
+	[ 3, 5, 5, 5, 5,-1, 5, 1],
+	[ 6, 6, 6, 6, 6, 5,-1, 6],
+	[ 0, 1, 1, 1, 4, 1, 7,-1],
+]
 
 func _ready() -> void:
 	pass
-
-
 
 func change_color(color:Color):
 	var styleBox := get_theme_stylebox("panel").duplicate()
@@ -92,5 +113,44 @@ func element_react(elementID: int):
 	print(Target_Tile)
 	set_tile_id(Target_Tile)
 
-func tile_react(tile_around: Array):
-	pass
+func tile_react(neighbors: Array):
+	# neighbors 是长度为4的数组，分别是上、下、左、右的地块类型
+	var effect_tile: int = -1
+	var target_tile: int = -1
+	# 开始处理随机 #
+	var weights = []
+	var types = []
+	for n in neighbors:
+		if n >= 0 and n < Tile_React_Weights[Tile_type].size():
+			weights.append(Tile_React_Weights[Tile_type][n])
+			types.append(n)
+		else:
+			# 边界或无效地块，权重为0，不参与
+			pass
+
+	# 如果没有有效邻居，返回自己
+	if weights.size() == 0:
+		return Tile_type
+
+	# 权重随机选择
+	var total = 0
+	for w in weights:
+		total += w
+
+	if total == 0:
+		return Tile_type  # 没有权重，保持不变
+
+	var r = randi() % total
+	var acc = 0
+	for i in range(weights.size()):
+		acc += weights[i]
+		if r < acc:
+			effect_tile = types[i]
+			break
+	# 结束处理随机 #
+	
+	# 开始处理交互 #
+	if effect_tile != Tile_type:
+		target_tile = Tile_React_Rules[Tile_type][effect_tile]
+	
+	set_tile_id(target_tile)

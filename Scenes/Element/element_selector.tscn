@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bid2ubjs3u15c" path="res://Scripts/element_selector.gd" id="1_rnyed"]
 [ext_resource type="Texture2D" uid="uid://c07kor5dgc7l2" path="res://Assets/Elements/Test.png" id="2_rnyed"]
 [ext_resource type="Texture2D" uid="uid://eg3dgrk6s7vf" path="res://Assets/Elements/fire.png" id="3_e3al2"]
-[ext_resource type="Texture2D" uid="uid://bspf7a3yfgx4k" path="res://Assets/Elements/water.png" id="4_alxmp"]
+[ext_resource type="Texture2D" uid="uid://b8h5q5uyvkt7n" path="res://Assets/Elements/water.png" id="4_alxmp"]
 [ext_resource type="Texture2D" uid="uid://b3fpeq586qssg" path="res://Assets/Elements/wind.png" id="5_s6kbo"]
 [ext_resource type="Texture2D" uid="uid://df0eirckyt18x" path="res://Assets/Elements/ice.png" id="6_xc8ur"]
 

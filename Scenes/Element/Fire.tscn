@@ -5,6 +5,7 @@
 
 [node name="Fire" type="Sprite2D"]
 z_index = 100
+scale = Vector2(2, 2)
 texture = ExtResource("1_rys4e")
 script = ExtResource("2_h806f")
 rect = Rect2(0, 0, 100, 100)

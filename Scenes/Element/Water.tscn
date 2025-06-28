@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://b03eu7wte8pjb"]
 
-[ext_resource type="Texture2D" uid="uid://bspf7a3yfgx4k" path="res://Assets/Elements/water.png" id="1_hiyrd"]
+[ext_resource type="Texture2D" uid="uid://b8h5q5uyvkt7n" path="res://Assets/Elements/water.png" id="1_hiyrd"]
 [ext_resource type="Script" uid="uid://dxmcayl4yaywk" path="res://Scripts/elements.gd" id="2_h806f"]
 
-[node name="Fire" type="Sprite2D"]
+[node name="Water" type="Sprite2D"]
 z_index = 100
-position = Vector2(0, -8)
+scale = Vector2(2, 2)
 texture = ExtResource("1_hiyrd")
 script = ExtResource("2_h806f")
 rect = Rect2(0, 0, 100, 100)

@@ -7,7 +7,11 @@ extends Node2D
 # 元素选择相关
 @onready var element_selector: PanelContainer = $Element_Selector
 var selected_element_type: int = -1  # 当前选中的元素类型 (-1表示未选择)
+var current_cost: int = 5
+var cost_max: int = 15
 
+const element_cost = [2, 5, 10, 2, 2]
+ 
 # 元素场景预加载
 var element_scenes = [
 	preload("res://Scenes/Element/Earth.tscn"),
@@ -32,6 +36,11 @@ func _ready() -> void:
 func _on_element_selected(element_type: int):
 	selected_element_type = element_type
 	
+	# 费用不够就选不了
+	if current_cost < element_cost[selected_element_type]:
+		selected_element_type = -1
+		return
+	
 	var element_scene = element_scenes[element_type]
 	object = element_scene.instantiate()
 	add_child(object)
@@ -40,8 +49,11 @@ func _on_element_selected(element_type: int):
 	print("开始放置元素类型: ", selected_element_type)
 
 func _on_time_up():
-	pass
-	
+	grid.settle_all_tiles()
+	current_cost += 2
+	if current_cost > cost_max :
+		current_cost = cost_max
+		
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("leftClick") and is_placing:
 		# 固定元素，退出放置模式
@@ -84,5 +96,7 @@ func _reset_highlight():
 
 func _place_element(TargetCell):
 	print("放置了元素类型 ", selected_element_type, " 在位置 ", TargetCell)
+	current_cost -= element_cost[selected_element_type]
+	
 	TargetCell.element_react(selected_element_type)
 	_reset_highlight()

@@ -60,12 +60,12 @@ func _update_button_states():
 	ice_button.modulate = Color.WHITE
 	
 	# 高亮选中的按钮
-	match selected_element:
-		0: earth_button.modulate = Color.YELLOW
-		1: fire_button.modulate = Color.YELLOW
-		2: water_button.modulate = Color.YELLOW
-		3: wind_button.modulate = Color.YELLOW
-		4: ice_button.modulate = Color.YELLOW
+	#match selected_element:
+	#	0: earth_button.modulate = Color.YELLOW
+	#	1: fire_button.modulate = Color.YELLOW
+	#	2: water_button.modulate = Color.YELLOW
+	#	3: wind_button.modulate = Color.YELLOW
+	#	4: ice_button.modulate = Color.YELLOW
 
 func get_selected_building() -> int:
 	return selected_element

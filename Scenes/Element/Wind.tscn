@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b3fpeq586qssg" path="res://Assets/Elements/wind.png" id="1_wxixo"]
 [ext_resource type="Script" uid="uid://dxmcayl4yaywk" path="res://Scripts/elements.gd" id="2_h806f"]
 
-[node name="Fire" type="Sprite2D"]
+[node name="Wind" type="Sprite2D"]
 z_index = 100
 texture = ExtResource("1_wxixo")
 script = ExtResource("2_h806f")

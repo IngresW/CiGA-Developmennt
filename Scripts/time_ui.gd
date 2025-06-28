@@ -4,10 +4,10 @@ extends Control
 @onready var label: Label = $Label
 @onready var pause_button: CheckButton = $PauseButton
 
-var max_time: float = 15.0
-var current_time: float = 15.0
+var max_time: float = 2
+var current_time: float = 2
 var is_running: bool = false
-
+	
 signal time_up
 
 func _ready():
