@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b7tu4j26lbu3k" path="res://Assets/Characters/WALK.png" id="6_megsn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjgbg"]
-size = Vector2(138, 137.5)
+size = Vector2(29, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yoq75"]
 atlas = ExtResource("3_nn08x")
@@ -258,10 +258,11 @@ visible = false
 texture = ExtResource("2_6t5aa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2)
 shape = SubResource("RectangleShape2D_jjgbg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kyqiw")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.379567
+frame_progress = 0.211432
