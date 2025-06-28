@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://d0wlgu46j1ndm"]
+[gd_scene load_steps=12 format=4 uid="uid://d0wlgu46j1ndm"]
 
 [ext_resource type="Texture2D" uid="uid://c3mo7r4vuqip4" path="res://Assets/World_Assets/world_tileset.png" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://c2y7po8rbw1kg" path="res://Scenes/Player.tscn" id="2_idj7w"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cx4jlris5rtff" path="res://Scenes/Element/element_selector.tscn" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://rw0aj8o1ewad" path="res://Scenes/timer_ui.tscn" id="6_21xkr"]
 [ext_resource type="Script" uid="uid://byvr11v4cs7x0" path="res://Scripts/label.gd" id="7_6bp64"]
+[ext_resource type="Script" uid="uid://x0mkhuks1v6g" path="res://Scenes/hud.gd" id="8_344ge"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjgbg"]
 
@@ -96,6 +97,7 @@ offset_right = 1141.0
 offset_bottom = 518.0
 
 [node name="TimerUI" parent="Scene" instance=ExtResource("6_21xkr")]
+visible = false
 offset_left = 1.0
 offset_top = 1040.0
 offset_right = 1041.0
@@ -110,5 +112,12 @@ scale = Vector2(2.50338, 2.37207)
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_6bp64")
+
+[node name="HUD" type="CanvasLayer" parent="Scene"]
+script = ExtResource("8_344ge")
+
+[node name="ScoreLabel" type="Label" parent="Scene/HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="gui_input" from="Scene/Grid" to="Scene" method="_on_grid_gui_input"]
