@@ -34,3 +34,9 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("2_rnyed")
 stretch_mode = 5
+
+[node name="Ice" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("2_rnyed")
+stretch_mode = 5

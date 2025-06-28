@@ -6,6 +6,7 @@ signal element_selected(element_type: int)
 @onready var fire_button: TextureButton = $VBoxContainer/Fire
 @onready var water_button: TextureButton = $VBoxContainer/Water
 @onready var wind_button: TextureButton = $VBoxContainer/Wind
+@onready var ice_button: TextureButton = $VBoxContainer/Ice
 
 var selected_element: int = -1
 
@@ -15,6 +16,7 @@ func _ready():
 	fire_button.pressed.connect(_on_fire_pressed)
 	water_button.pressed.connect(_on_water_pressed)
 	wind_button.pressed.connect(_on_wind_pressed)
+	ice_button.pressed.connect(_on_ice_pressed)
 	
 	# 初始化按钮状态
 	_update_button_states()
@@ -42,6 +44,12 @@ func _on_wind_pressed():
 	_update_button_states()
 	element_selected.emit(selected_element)
 	print("Select Wind")
+	
+func _on_ice_pressed():
+	selected_element = 4
+	_update_button_states()
+	element_selected.emit(selected_element)
+	print("Select Ice")
 
 func _update_button_states():
 	# 重置所有按钮
@@ -49,6 +57,7 @@ func _update_button_states():
 	fire_button.modulate = Color.WHITE
 	water_button.modulate = Color.WHITE
 	wind_button.modulate = Color.WHITE
+	ice_button.modulate = Color.WHITE
 	
 	# 高亮选中的按钮
 	match selected_element:
@@ -56,6 +65,7 @@ func _update_button_states():
 		1: fire_button.modulate = Color.YELLOW
 		2: water_button.modulate = Color.YELLOW
 		3: wind_button.modulate = Color.YELLOW
+		4: ice_button.modulate = Color.YELLOW
 
 func get_selected_building() -> int:
 	return selected_element

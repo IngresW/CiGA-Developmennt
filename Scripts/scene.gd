@@ -13,7 +13,8 @@ var element_scenes = [
 	preload("res://Scenes/Element/Earth.tscn"),
 	preload("res://Scenes/Element/Fire.tscn"), 
 	preload("res://Scenes/Element/Water.tscn"),
-	preload("res://Scenes/Element/Wind.tscn")
+	preload("res://Scenes/Element/Wind.tscn"),
+	preload("res://Scenes/Element/Ice.tscn")
 ]
 
 var gridSize: Vector2
