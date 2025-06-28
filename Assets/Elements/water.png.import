@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btnvy4e3ihp81"
-path="res://.godot/imported/HURT.png-862829b6028e4abf2465691f1f96ce06.ctex"
+uid="uid://bspf7a3yfgx4k"
+path="res://.godot/imported/water.png-5181fad950487570398bb728b53a3e5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/HURT.png"
-dest_files=["res://.godot/imported/HURT.png-862829b6028e4abf2465691f1f96ce06.ctex"]
+source_file="res://Assets/Elements/water.png"
+dest_files=["res://.godot/imported/water.png-5181fad950487570398bb728b53a3e5a.ctex"]
 
 [params]
 

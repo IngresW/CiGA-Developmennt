@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c05m6g5wpkkdj"]
 
-[ext_resource type="Texture2D" uid="uid://c07kor5dgc7l2" path="res://Assets/Object/Test.png" id="1_ykwmq"]
+[ext_resource type="Texture2D" uid="uid://df0eirckyt18x" path="res://Assets/Elements/ice.png" id="1_ykwmq"]
 [ext_resource type="Script" uid="uid://dxmcayl4yaywk" path="res://Scripts/elements.gd" id="2_sl1o1"]
 
 [node name="Ice" type="Sprite2D"]
-modulate = Color(0.898273, 0.864174, 0.982742, 1)
-z_index = 2
+z_index = 100
 texture = ExtResource("1_ykwmq")
 script = ExtResource("2_sl1o1")
 rect = Rect2(0, 0, 100, 100)

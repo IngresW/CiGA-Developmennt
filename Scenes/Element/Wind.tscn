@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwvpn73b6v3c4"]
 
-[ext_resource type="Texture2D" uid="uid://c07kor5dgc7l2" path="res://Assets/Object/Test.png" id="1_h806f"]
+[ext_resource type="Texture2D" uid="uid://b3fpeq586qssg" path="res://Assets/Elements/wind.png" id="1_wxixo"]
 [ext_resource type="Script" uid="uid://dxmcayl4yaywk" path="res://Scripts/elements.gd" id="2_h806f"]
 
 [node name="Fire" type="Sprite2D"]
-modulate = Color(0.270588, 1, 1, 1)
-z_index = 2
-texture = ExtResource("1_h806f")
+z_index = 100
+texture = ExtResource("1_wxixo")
 script = ExtResource("2_h806f")
 rect = Rect2(0, 0, 100, 100)

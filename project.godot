@@ -15,9 +15,13 @@ run/main_scene="uid://d0wlgu46j1ndm"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
+
 [display]
 
-window/size/viewport_width=1140
+window/size/viewport_width=1200
 window/size/viewport_height=1100
 
 [editor]
@@ -85,10 +89,6 @@ leftClick={
 "deadzone": 0.2,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(164, 11),"global_position":Vector2(173, 59),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
-}
-pause={
-"deadzone": 0.2,
-"events": []
 }
 
 [rendering]

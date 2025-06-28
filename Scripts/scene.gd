@@ -37,7 +37,7 @@ func _on_element_selected(element_type: int):
 	add_child(object)
 	object.global_position = get_global_mouse_position()
 	is_placing = true
-	print("开始放置建筑类型: ", selected_element_type)
+	print("开始放置元素类型: ", selected_element_type)
 
 func _on_time_up():
 	pass
@@ -47,11 +47,12 @@ func _input(event: InputEvent) -> void:
 		# 固定元素，退出放置模式
 		if targetCell:
 			_place_element(targetCell)
-		object = null
 		is_placing = false
 		selected_element_type = -1  # 清除选择
 		element_selector.clear_selection()  # 清除UI选择状态
 		_reset_highlight()
+		object.queue_free()
+		object = null
 
 func _process(delta):
 	if is_placing and object:
@@ -83,5 +84,5 @@ func _reset_highlight():
 
 func _place_element(TargetCell):
 	print("放置了元素类型 ", selected_element_type, " 在位置 ", TargetCell)
-	# TODO
+	TargetCell.element_react(selected_element_type)
 	_reset_highlight()

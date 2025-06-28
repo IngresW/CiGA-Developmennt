@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4o6pwtu3tt4a"]
 
-[ext_resource type="Texture2D" uid="uid://c07kor5dgc7l2" path="res://Assets/Object/Test.png" id="1_h806f"]
+[ext_resource type="Texture2D" uid="uid://eg3dgrk6s7vf" path="res://Assets/Elements/fire.png" id="1_rys4e"]
 [ext_resource type="Script" uid="uid://dxmcayl4yaywk" path="res://Scripts/elements.gd" id="2_h806f"]
 
 [node name="Fire" type="Sprite2D"]
-z_index = 2
-texture = ExtResource("1_h806f")
+z_index = 100
+texture = ExtResource("1_rys4e")
 script = ExtResource("2_h806f")
 rect = Rect2(0, 0, 100, 100)

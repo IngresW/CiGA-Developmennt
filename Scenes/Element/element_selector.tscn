@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx4jlris5rtff"]
+[gd_scene load_steps=7 format=3 uid="uid://cx4jlris5rtff"]
 
 [ext_resource type="Script" uid="uid://bid2ubjs3u15c" path="res://Scripts/element_selector.gd" id="1_rnyed"]
-[ext_resource type="Texture2D" uid="uid://c07kor5dgc7l2" path="res://Assets/Object/Test.png" id="2_rnyed"]
+[ext_resource type="Texture2D" uid="uid://c07kor5dgc7l2" path="res://Assets/Elements/Test.png" id="2_rnyed"]
+[ext_resource type="Texture2D" uid="uid://eg3dgrk6s7vf" path="res://Assets/Elements/fire.png" id="3_e3al2"]
+[ext_resource type="Texture2D" uid="uid://bspf7a3yfgx4k" path="res://Assets/Elements/water.png" id="4_alxmp"]
+[ext_resource type="Texture2D" uid="uid://b3fpeq586qssg" path="res://Assets/Elements/wind.png" id="5_s6kbo"]
+[ext_resource type="Texture2D" uid="uid://df0eirckyt18x" path="res://Assets/Elements/ice.png" id="6_xc8ur"]
 
 [node name="Element_Selector" type="PanelContainer"]
 offset_right = 40.0
@@ -20,23 +24,24 @@ stretch_mode = 5
 [node name="Fire" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("2_rnyed")
+texture_normal = ExtResource("3_e3al2")
 stretch_mode = 5
 
 [node name="Water" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("2_rnyed")
+texture_normal = ExtResource("4_alxmp")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Wind" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("2_rnyed")
+texture_normal = ExtResource("5_s6kbo")
 stretch_mode = 5
 
 [node name="Ice" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("2_rnyed")
+texture_normal = ExtResource("6_xc8ur")
 stretch_mode = 5

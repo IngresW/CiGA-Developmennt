@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciye5ruoaseuf"
-path="res://.godot/imported/CAT7.png-2f55d30a3fbae468b39a5e138a619e11.ctex"
+uid="uid://iiidmql13i1o"
+path="res://.godot/imported/tile_4.jpg-1b369fd41c9a6b74c118a41e59c2a891.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/CAT/CAT7.png"
-dest_files=["res://.godot/imported/CAT7.png-2f55d30a3fbae468b39a5e138a619e11.ctex"]
+source_file="res://Assets/Object/tile_4.jpg"
+dest_files=["res://.godot/imported/tile_4.jpg-1b369fd41c9a6b74c118a41e59c2a891.ctex"]
 
 [params]
 

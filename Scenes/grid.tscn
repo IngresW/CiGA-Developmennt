@@ -5,5 +5,5 @@
 [node name="Grid" type="GridContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
-columns = 10
+columns = 20
 script = ExtResource("1_xm2js")
