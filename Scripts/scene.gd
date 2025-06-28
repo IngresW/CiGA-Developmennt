@@ -1,13 +1,14 @@
 extends Node2D
 
 @onready var grid: GridContainer = $Grid
+@onready var timer_ui: Control = $TimerUI
 
 
-# 建筑选择相关
+# 元素选择相关
 @onready var element_selector: PanelContainer = $Element_Selector
-var selected_element_type: int = -1  # 当前选中的建筑类型 (-1表示未选择)
+var selected_element_type: int = -1  # 当前选中的元素类型 (-1表示未选择)
 
-# 建筑场景预加载
+# 元素场景预加载
 var element_scenes = [
 	preload("res://Scenes/Element/Earth.tscn"),
 	preload("res://Scenes/Element/Fire.tscn"), 
@@ -24,7 +25,9 @@ func _ready() -> void:
 	gridSize = Vector2(grid.cellWidth, grid.cellHeight)
 	if element_selector:
 		element_selector.element_selected.connect(_on_element_selected)
-
+		if timer_ui:
+			timer_ui.time_up.connect(_on_time_up)
+				
 func _on_element_selected(element_type: int):
 	selected_element_type = element_type
 	
@@ -35,9 +38,12 @@ func _on_element_selected(element_type: int):
 	is_placing = true
 	print("开始放置建筑类型: ", selected_element_type)
 
+func _on_time_up():
+	pass
+	
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("leftClick") and is_placing:
-		# 固定建筑，退出放置模式
+		# 固定元素，退出放置模式
 		if targetCell:
 			_place_element(targetCell)
 		object = null
