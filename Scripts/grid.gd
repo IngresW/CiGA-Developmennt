@@ -25,9 +25,6 @@ extends GridContainer
 const GRID_CELL = preload("res://Scenes/grid_cell.tscn")
 const borderSize = 4
 
-var last_update_time := 0.0
-var update_interval := 0.05 # 50ms
-
 func _ready() -> void:
 	_create_grid()
 	

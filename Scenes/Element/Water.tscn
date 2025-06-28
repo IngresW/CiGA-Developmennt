@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b03eu7wte8pjb"]
+
+[ext_resource type="Texture2D" uid="uid://c07kor5dgc7l2" path="res://Assets/Object/Test.png" id="1_h806f"]
+[ext_resource type="Script" uid="uid://dxmcayl4yaywk" path="res://Scripts/elements.gd" id="2_h806f"]
+
+[node name="Fire" type="Sprite2D"]
+modulate = Color(1, 0.368627, 1, 0.992157)
+z_index = 2
+texture = ExtResource("1_h806f")
+script = ExtResource("2_h806f")
+rect = Rect2(0, 0, 100, 100)

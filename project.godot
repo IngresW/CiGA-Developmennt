@@ -21,7 +21,7 @@ Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
 
 [display]
 
-window/size/viewport_width=1100
+window/size/viewport_width=1200
 window/size/viewport_height=1100
 
 [editor]
@@ -31,7 +31,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

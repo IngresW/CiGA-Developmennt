@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx4jlris5rtff"]
+
+[ext_resource type="Script" uid="uid://bid2ubjs3u15c" path="res://Scripts/element_selector.gd" id="1_rnyed"]
+[ext_resource type="Texture2D" uid="uid://c07kor5dgc7l2" path="res://Assets/Object/Test.png" id="2_rnyed"]
+
+[node name="Element_Selector" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_rnyed")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Earth" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("2_rnyed")
+stretch_mode = 5
+
+[node name="Fire" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("2_rnyed")
+stretch_mode = 5
+
+[node name="Water" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("2_rnyed")
+stretch_mode = 5
+
+[node name="Wind" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("2_rnyed")
+stretch_mode = 5

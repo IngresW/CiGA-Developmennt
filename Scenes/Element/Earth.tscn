@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dke4qxynwxj4v"]
+
+[ext_resource type="Texture2D" uid="uid://c07kor5dgc7l2" path="res://Assets/Object/Test.png" id="1_0tyaj"]
+[ext_resource type="Script" uid="uid://dxmcayl4yaywk" path="res://Scripts/elements.gd" id="2_e7d21"]
+
+[node name="earth" type="Sprite2D"]
+modulate = Color(0.296565, 0.747235, 0.625477, 1)
+z_index = 2
+texture = ExtResource("1_0tyaj")
+script = ExtResource("2_e7d21")
