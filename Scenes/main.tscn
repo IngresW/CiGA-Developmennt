@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=4 uid="uid://d0wlgu46j1ndm"]
 
 [ext_resource type="Texture2D" uid="uid://c3mo7r4vuqip4" path="res://Assets/World_Assets/world_tileset.png" id="2_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://c2y7po8rbw1kg" path="res://Scenes/Player.tscn" id="2_idj7w"]
+[ext_resource type="PackedScene" path="res://Scenes/Player.tscn" id="2_idj7w"]
 [ext_resource type="Script" uid="uid://co55sgpy1wkol" path="res://Scripts/scene.gd" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://4f6ufktmxss6" path="res://Scenes/grid.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cx4jlris5rtff" path="res://Scenes/Element/element_selector.tscn" id="4_kry3j"]
@@ -97,7 +97,6 @@ offset_right = 1141.0
 offset_bottom = 518.0
 
 [node name="TimerUI" parent="Scene" instance=ExtResource("6_21xkr")]
-visible = false
 offset_left = 1.0
 offset_top = 1040.0
 offset_right = 1041.0
