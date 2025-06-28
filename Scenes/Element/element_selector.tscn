@@ -21,11 +21,31 @@ layout_mode = 2
 texture_normal = ExtResource("2_rnyed")
 stretch_mode = 5
 
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Earth"]
+layout_mode = 0
+offset_right = 98.0
+offset_bottom = 104.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Earth"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="Fire" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("3_e3al2")
 stretch_mode = 5
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Fire"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 104.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Fire"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Water" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
@@ -34,14 +54,44 @@ texture_normal = ExtResource("4_alxmp")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Water"]
+layout_mode = 0
+offset_right = 101.0
+offset_bottom = 98.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Water"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="Wind" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("5_s6kbo")
 stretch_mode = 5
 
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Wind"]
+layout_mode = 0
+offset_right = 99.0
+offset_bottom = 101.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Wind"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="Ice" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("6_xc8ur")
 stretch_mode = 5
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Ice"]
+layout_mode = 0
+offset_right = 99.0
+offset_bottom = 100.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Ice"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

@@ -62,22 +62,28 @@ tile_set = SubResource("TileSet_jjvhh")
 
 [node name="Camera2D" type="Camera2D" parent="Scene/TileMap"]
 
-[node name="CanvasLayer_UI" type="CanvasLayer" parent="Scene"]
+[node name="Grid" parent="Scene" instance=ExtResource("3_8gbba")]
+z_index = 100
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 1078.0
+offset_bottom = 1077.0
+scale = Vector2(0.962939, 0.962939)
 
-[node name="TimerUI" parent="Scene/CanvasLayer_UI" instance=ExtResource("6_21xkr")]
-offset_left = 1.0
-offset_top = 1040.0
-offset_right = 1041.0
-offset_bottom = 1100.0
-
-[node name="Element_Selector" parent="Scene/CanvasLayer_UI" instance=ExtResource("4_kry3j")]
+[node name="Element_Selector" parent="Scene" instance=ExtResource("4_kry3j")]
 z_index = 1
 offset_left = 1041.0
 offset_top = 2.0
 offset_right = 1141.0
 offset_bottom = 518.0
 
-[node name="Label" type="Label" parent="Scene/CanvasLayer_UI"]
+[node name="TimerUI" parent="Scene" instance=ExtResource("6_21xkr")]
+offset_left = 1.0
+offset_top = 1040.0
+offset_right = 1041.0
+offset_bottom = 1100.0
+
+[node name="Label" type="Label" parent="Scene"]
 offset_left = 1041.0
 offset_top = 518.0
 offset_right = 1081.0
@@ -87,19 +93,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_6bp64")
 
-[node name="Grid" parent="Scene" instance=ExtResource("3_8gbba")]
-z_index = 100
-offset_left = 2.0
-offset_top = 1.0
-offset_right = 1078.0
-offset_bottom = 1077.0
-scale = Vector2(0.962939, 0.962939)
-
 [node name="HUD" type="CanvasLayer" parent="Scene"]
 script = ExtResource("8_344ge")
 
 [node name="ScoreLabel" type="Label" parent="Scene/HUD"]
-offset_right = 92.0
-offset_bottom = 48.0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="gui_input" from="Scene/Grid" to="Scene" method="_on_grid_gui_input"]
