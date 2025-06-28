@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=4 uid="uid://d0wlgu46j1ndm"]
 
 [ext_resource type="Texture2D" uid="uid://c3mo7r4vuqip4" path="res://Assets/World_Assets/world_tileset.png" id="2_bo1nx"]
-[ext_resource type="PackedScene" path="res://Scenes/Player.tscn" id="2_idj7w"]
+[ext_resource type="PackedScene" uid="uid://c2y7po8rbw1kg" path="res://Scenes/Player.tscn" id="2_idj7w"]
 [ext_resource type="Script" uid="uid://co55sgpy1wkol" path="res://Scripts/scene.gd" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://4f6ufktmxss6" path="res://Scenes/grid.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cx4jlris5rtff" path="res://Scenes/Element/element_selector.tscn" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://rw0aj8o1ewad" path="res://Scenes/timer_ui.tscn" id="6_21xkr"]
 [ext_resource type="Script" uid="uid://byvr11v4cs7x0" path="res://Scripts/label.gd" id="7_6bp64"]
-[ext_resource type="Script" uid="uid://x0mkhuks1v6g" path="res://Scenes/hud.gd" id="8_344ge"]
+[ext_resource type="Script" path="res://Scenes/hud.gd" id="8_344ge"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjgbg"]
 

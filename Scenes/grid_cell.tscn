@@ -3,10 +3,6 @@
 [ext_resource type="Script" uid="uid://du3afyget1s5h" path="res://Scripts/gridcell.gd" id="1_a7rwb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqexn"]
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 
 [node name="Grid_Cell" type="PanelContainer"]
 z_index = 2
