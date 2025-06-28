@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4o6pwtu3tt4a"]
+
+[ext_resource type="Texture2D" uid="uid://c07kor5dgc7l2" path="res://Assets/Object/Test.png" id="1_h806f"]
+[ext_resource type="Script" uid="uid://b65dr3nmu7d5a" path="res://Scripts/object.gd" id="2_xf5hi"]
+
+[node name="Object" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.392157)
+z_index = 2
+texture = ExtResource("1_h806f")
+script = ExtResource("2_xf5hi")
+rect = Rect2(0, 0, 100, 100)
