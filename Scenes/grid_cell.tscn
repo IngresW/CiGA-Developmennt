@@ -61,3 +61,6 @@ sprite_frames = SubResource("SpriteFrames_l8fba")
 animation = &"flow"
 frame_progress = 0.285613
 centered = false
+
+[node name="ProductLabel" type="Label" parent="."]
+layout_mode = 2

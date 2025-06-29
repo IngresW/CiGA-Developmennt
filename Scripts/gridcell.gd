@@ -5,6 +5,7 @@ extends PanelContainer
 
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var product_label: Label = $ProductLabel
 
 const Tiles_pic = [
 	preload("res://Assets/Object/tile_0.jpg"),
@@ -58,6 +59,8 @@ const Tile_React_Rules = [
 const PRODUCTS = preload("res://Scripts/products.gd").PRODUCTS
 
 signal product_generated(product_id, score, cost)
+
+var product_ids: Array = []  # 空表示没有生成物
 
 func _ready() -> void:
 	z_as_relative = false
@@ -142,8 +145,9 @@ func element_react(elementID: int):
 					Target_Tile = 8
 				4:
 					Target_Tile = 5
-	print(Target_Tile)
-	set_tile_id(Target_Tile)
+	# print(Target_Tile)
+	if Target_Tile != -1:
+		set_tile_id(Target_Tile)
 	try_generate_product_by_element(before_tile, elementID)
 
 func tile_react(neighbors: Array):
@@ -192,18 +196,30 @@ func tile_react(neighbors: Array):
 		target_tile = Tile_React_Rules[Tile_type][effect_tile]
 	
 	set_tile_id(target_tile)
-	try_generate_product_by_tile(before_tile, target_tile)
+	try_generate_product_by_tile(before_tile, effect_tile)
 
 func try_generate_product_by_element(tile, element):
 	for product in PRODUCTS:
 		var t = product.trigger
 		if t.type == "tile_by_element" and t.tile == tile and t.element == element:
 			if randf() < t.prob:
-				emit_signal("product_generated", product.id, product.score, product.cost)
+				if not product.id in product_ids:
+					product_ids.append(product.id)
+					update_product_display()
 
 func try_generate_product_by_tile(from_tile, to_tile):
 	for product in PRODUCTS:
 		var t = product.trigger
 		if t.type == "tile_by_tile" and t.from == from_tile and t.to == to_tile:
 			if randf() < t.prob:
-				emit_signal("product_generated", product.id, product.score, product.cost)
+				if not product.id in product_ids:
+					product_ids.append(product.id)
+					update_product_display()
+
+func update_product_display():
+	if product_ids.size() > 0:
+		product_label.text = "another product"
+		product_label.visible = true
+	else:
+		product_label.text = ""
+		product_label.visible = false

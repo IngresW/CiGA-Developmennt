@@ -33,6 +33,8 @@ var targetCell = null
 var is_dragging := false
 var drag_start := Vector2()
 
+var score := 0
+
 func _ready() -> void:
 	gridSize = Vector2(grid.cellWidth, grid.cellHeight)
 	camera.position = Vector2(550, 550) #相机初始位置
@@ -48,7 +50,9 @@ func _ready() -> void:
 
 	_update_ui()
 
-	
+	for cell in grid.get_children():
+		cell.connect("product_generated", Callable(self, "_on_product_generated"))
+
 func _on_element_selected(element_type: int):
 	if current_cost < element_cost[element_type]:
 		selected_element_type = -1
@@ -65,11 +69,14 @@ func _on_element_selected(element_type: int):
 
 func _on_time_up():
 	grid.settle_all_tiles()
-	_print_map()
+	# _print_map()
 	current_cost += 2
 	if current_cost > cost_max:
 		current_cost = cost_max
 	_update_ui()
+	print_all_products()
+	check_special_blocks()
+	process_special_blocks_each_round()
 
 func _zoom_camera(delta: float, focus_pos: Vector2):
 	var new_zoom = camera.zoom * (1 + delta)
@@ -146,7 +153,7 @@ func _place_element(TargetCell):
 	
 	_reset_highlight()
 	_update_ui()
-	_print_map()
+	# _print_map()
 
 
 func _should_affect_surrounding(element_type: int) -> int:
@@ -243,9 +250,97 @@ func _sync_cell_to_map(cell):
 		grid.Map[x][y] = cell.Tile_type
 
 func _update_ui():
-	label.text = "Cost: %d / %d" % [current_cost, cost_max]
+	label.text = "Cost: %d / %d | Score: %d" % [current_cost, cost_max, score]
 	
 func _print_map():
 	for row in grid.Map:
 			print(row)
 	print(" ")
+
+func _on_product_generated(product_id, product_score, product_cost):
+	score += product_score
+	current_cost += product_cost
+	if current_cost > cost_max:
+		current_cost = cost_max
+	_update_ui()
+	print("生成物ID:", product_id, " 得分:", product_score, " 神力点:", product_cost)
+
+func print_all_products():
+	var cells = grid.get_children()
+	var width = grid.columns
+	var height = grid.get_child_count() / width
+	for y in range(height):
+		var row = []
+		for x in range(width):
+			var idx = y * width + x
+			var cell = cells[idx]
+			row.append(str(cell.product_id))
+		print(" ".join(row))
+	print(" ")
+
+func check_special_blocks():
+	var cells = grid.get_children()
+	for cell in cells:
+		# 只考虑矿物生成物（假设矿物id为0~8）
+		var minerals = []
+		for pid in cell.product_ids:
+			if pid >= 0 and pid <= 8:
+				minerals.append(pid)
+		if minerals.size() >= 2:
+			# 随机抽取一种特殊地块
+			var special_id = 9 + randi() % 3  # 9,10,11
+			if not special_id in cell.product_ids:
+				cell.product_ids.append(special_id)
+				cell.update_product_display()
+				cell.start_special_block_timer(special_id)  # 见下
+
+func process_special_blocks_each_round():
+	var cells = grid.get_children()
+	for cell in cells:
+		if cell.special_block_id != -1:
+			cell.special_block_timer -= 1
+			# 每回合触发效果
+			match cell.special_block_id:
+				9:  # 村庄
+					score += 10
+					current_cost += 1
+					replace_cross_cells(cell, 1)  # 十字形替换为地块1
+				10: # 祭坛
+					score += 5
+					current_cost += 2
+					replace_cross_cells(cell, 6)  # 十字形替换为地块6
+				11: # 矿坑
+					score += 20
+					replace_cross_cells(cell, 3)  # 十字形替换为地块3
+			if cell.special_block_timer <= 0:
+				# 变为指定地块并移除特殊生成物
+				if cell.special_block_id == 9:
+					cell.set_tile_id(1)
+				elif cell.special_block_id == 10:
+					cell.set_tile_id(6)
+				elif cell.special_block_id == 11:
+					cell.set_tile_id(3)
+				cell.product_ids.erase(cell.special_block_id)
+				cell.special_block_id = -1
+				cell.update_product_display()
+
+func replace_cross_cells(center_cell, tile_id):
+	var cells = grid.get_children()
+	var idx = cells.find(center_cell)
+	if idx == -1:
+		return
+	var x = idx % grid.columns
+	var y = idx / grid.columns
+	var directions = [
+		Vector2i(0, -1),  # 上
+		Vector2i(0, 1),   # 下
+		Vector2i(-1, 0),  # 左
+		Vector2i(1, 0)    # 右
+	]
+	for dir in directions:
+		var nx = x + dir.x
+		var ny = y + dir.y
+		if nx >= 0 and nx < grid.columns and ny >= 0 and ny < grid.get_child_count() / grid.columns:
+			var nidx = ny * grid.columns + nx
+			if nidx >= 0 and nidx < cells.size():
+				cells[nidx].set_tile_id(tile_id)
