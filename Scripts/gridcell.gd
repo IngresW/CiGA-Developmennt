@@ -18,6 +18,16 @@ const Tiles_pic = [
 	preload("res://Assets/World_Assets/world_tileset.png")
 ]
 
+const Tiles_animation = [
+	"flow",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+]
 
 # 在此处修改随机权重
 const Tile_React_Weights = [
@@ -62,16 +72,17 @@ func update_visual():
 	if Tile_type == -1:
 		return
 	
-	if Tile_type != 0:
+	if Tile_type in [0,]:
+		$AnimatedSprite2D.animation = Tiles_animation[Tile_type]
+		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.visible = true
+		$TextureRect.visible = false
+		return
+	else:
 		$TextureRect.texture = Tiles_pic[Tile_type]
 		$TextureRect.visible = true
 		$AnimatedSprite2D.visible = false
 		return
-	else:
-		$AnimatedSprite2D.animation = "flow"
-		$AnimatedSprite2D.play()
-		$AnimatedSprite2D.visible = true
-		$TextureRect.visible = false
 	
 func element_react(elementID: int):
 	var Target_Tile: int = -1
@@ -131,6 +142,10 @@ func element_react(elementID: int):
 
 func tile_react(neighbors: Array):
 	# neighbors 是长度为4的数组，分别是上、下、左、右的地块类型
+	# 边界块不反应
+	if Tile_type == -1:
+		return
+	
 	var effect_tile: int = -1
 	var target_tile: int = -1
 	# 开始处理随机 #
