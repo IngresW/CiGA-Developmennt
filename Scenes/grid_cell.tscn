@@ -1,12 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://q6fk1ql3towu"]
+[gd_scene load_steps=13 format=3 uid="uid://q6fk1ql3towu"]
 
 [ext_resource type="Script" uid="uid://du3afyget1s5h" path="res://Scripts/gridcell.gd" id="1_a7rwb"]
-[ext_resource type="Texture2D" uid="uid://do1ntk75xufpg" path="res://Assets/Object/lava/1fc126b193b266785c8580c3c208eade.jpg" id="2_xb01k"]
-[ext_resource type="Texture2D" uid="uid://ct2qrvkr0esph" path="res://Assets/Object/lava/21f09ac504a9d146fe41e2ade4ba4dbf.jpg" id="3_40vdx"]
-[ext_resource type="Texture2D" uid="uid://ch862q55w16ec" path="res://Assets/Object/lava/dfe707fe72f6508089b4b4bc6dbfc01d.jpg" id="4_lrekf"]
-[ext_resource type="Texture2D" uid="uid://hbtsgychfe7y" path="res://Assets/Object/lava/dfa953cc4adb68fee681a9d2eafbdcb1.jpg" id="4_uqyw7"]
-[ext_resource type="Texture2D" uid="uid://cd18l0j0y3sg8" path="res://Assets/Object/lava/592cf1620247fef718e888f5915b06b7.jpg" id="7_ishqw"]
-[ext_resource type="Texture2D" uid="uid://nof1squcthpq" path="res://Assets/Object/lava/ffb7b8a582d756c8dbe38b173bd330d4.jpg" id="7_l8fba"]
+[ext_resource type="Texture2D" uid="uid://b6ohkqnkj2psy" path="res://Assets/Object/tile_0.jpg" id="2_lvagh"]
+[ext_resource type="Texture2D" uid="uid://bhigni60ieokv" path="res://Assets/Object/tile_01.jpg" id="3_ishqw"]
+[ext_resource type="Texture2D" uid="uid://rm28qh70bgtm" path="res://Assets/Object/tile_02.jpg" id="4_qj1kn"]
+[ext_resource type="Texture2D" uid="uid://c0u0b6h5sabot" path="res://Assets/Object/tile_1.jpg" id="8_gmqsg"]
+[ext_resource type="Texture2D" uid="uid://cqrh7k45pxix" path="res://Assets/Object/tile_32.jpg" id="8_lrekf"]
+[ext_resource type="Texture2D" uid="uid://coxnwnccgphlq" path="res://Assets/Object/tile_12.jpg" id="8_lvagh"]
+[ext_resource type="Texture2D" uid="uid://cuc4sx1ervbom" path="res://Assets/Object/tile_11.jpg" id="9_0srp4"]
+[ext_resource type="Texture2D" uid="uid://dpt3w33h6kbh0" path="res://Assets/Object/tile_3.jpg" id="9_lvagh"]
+[ext_resource type="Texture2D" uid="uid://1727333yqd4r" path="res://Assets/Object/tile_31.jpg" id="10_ishqw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqexn"]
 border_width_left = 1
@@ -18,30 +21,53 @@ border_width_bottom = 1
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_lrekf")
+"texture": ExtResource("2_lvagh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_l8fba")
+"texture": ExtResource("3_ishqw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_ishqw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_40vdx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_xb01k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_uqyw7")
+"texture": ExtResource("4_qj1kn")
 }],
 "loop": true,
 "name": &"flow",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_gmqsg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0srp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lvagh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0srp4")
+}],
+"loop": true,
+"name": &"grass",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_lvagh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ishqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lrekf")
+}],
+"loop": true,
+"name": &"water",
 "speed": 2.0
 }]
 
 [node name="Grid_Cell" type="PanelContainer"]
 z_index = 2
+clip_contents = true
 offset_left = 67.0
 offset_top = 63.0
 offset_right = 67.0
@@ -56,8 +82,6 @@ stretch_mode = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_l8fba")
 animation = &"flow"
-frame_progress = 0.285613
 centered = false

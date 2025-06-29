@@ -19,9 +19,9 @@ const Tiles_pic = [
 
 const Tiles_animation = [
 	"flow",
+	"grass",
 	"",
-	"",
-	"",
+	"water",
 	"",
 	"",
 	"",
@@ -69,7 +69,7 @@ func update_visual():
 	if Tile_type == -1:
 		return
 	
-	if Tile_type in [0,]:
+	if Tile_type in [0,1,3]:
 		$AnimatedSprite2D.animation = Tiles_animation[Tile_type]
 		$AnimatedSprite2D.play()
 		$AnimatedSprite2D.visible = true
