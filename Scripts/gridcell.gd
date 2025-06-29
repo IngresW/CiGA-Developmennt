@@ -98,7 +98,7 @@ func element_react(elementID: int):
 				1:
 					Target_Tile = 7
 				2:
-					Target_Tile = 2
+					Target_Tile = 3
 				4:
 					Target_Tile = 5
 		2:
@@ -114,7 +114,7 @@ func element_react(elementID: int):
 		4:
 			match elementID:
 				2:
-					Target_Tile = 1
+					Target_Tile = 3
 		5:
 			match elementID:
 				1:
