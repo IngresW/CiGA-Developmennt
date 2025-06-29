@@ -1,6 +1,11 @@
 extends CanvasLayer
 
+@onready var game_timer = $TimerUI
+@onready var help_ui = $HelpLayer
 var score = 100
+
+func _ready() -> void:
+	help_ui.visible = false
 
 func update_score():
 	$ScoreLabel.text = str(score)
