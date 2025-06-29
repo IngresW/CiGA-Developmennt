@@ -33,5 +33,7 @@ func _on_help_button_pressed() -> void:
 func _on_close_help_button_pressed() -> void:
 	game_scene.visible = true
 	game_ui.visible = true
-	game_timer.is_running = true
+	if !(game_timer.is_pressed):
+		game_timer.is_running = true
 	help_ui.visible = false
+		
