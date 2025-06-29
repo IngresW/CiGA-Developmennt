@@ -1,5 +1,4 @@
 extends CanvasLayer
 
 func _on_start_button_pressed() -> void:
-	#get_parent().go_to_tutorial()
-	get_parent().go_to_main_game()
+	get_parent().go_to_tutorial()

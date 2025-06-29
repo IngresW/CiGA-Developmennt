@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://q6fk1ql3towu"]
+[gd_scene load_steps=10 format=3 uid="uid://q6fk1ql3towu"]
 
 [ext_resource type="Script" uid="uid://du3afyget1s5h" path="res://Scripts/gridcell.gd" id="1_a7rwb"]
 [ext_resource type="Texture2D" uid="uid://do1ntk75xufpg" path="res://Assets/Object/lava/1fc126b193b266785c8580c3c208eade.jpg" id="2_xb01k"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://hbtsgychfe7y" path="res://Assets/Object/lava/dfa953cc4adb68fee681a9d2eafbdcb1.jpg" id="4_uqyw7"]
 [ext_resource type="Texture2D" uid="uid://cd18l0j0y3sg8" path="res://Assets/Object/lava/592cf1620247fef718e888f5915b06b7.jpg" id="7_ishqw"]
 [ext_resource type="Texture2D" uid="uid://nof1squcthpq" path="res://Assets/Object/lava/ffb7b8a582d756c8dbe38b173bd330d4.jpg" id="7_l8fba"]
-[ext_resource type="Script" uid="uid://cbno35fqw0h0c" path="res://Scripts/animated_sprite_2d.gd" id="8_40vdx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqexn"]
 border_width_left = 1
@@ -57,9 +56,8 @@ stretch_mode = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
-scale = Vector2(5, 5)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_l8fba")
 animation = &"flow"
 frame_progress = 0.285613
 centered = false
-script = ExtResource("8_40vdx")
