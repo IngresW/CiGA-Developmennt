@@ -218,7 +218,10 @@ func try_generate_product_by_tile(from_tile, to_tile):
 
 func update_product_display():
 	if product_ids.size() > 0:
-		product_label.text = "another product"
+		var pid_strs = []
+		for pid in product_ids:
+			pid_strs.append(str(pid))
+		product_label.text = ",".join(pid_strs)
 		product_label.visible = true
 	else:
 		product_label.text = ""

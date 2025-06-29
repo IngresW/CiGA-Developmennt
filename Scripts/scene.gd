@@ -75,8 +75,6 @@ func _on_time_up():
 		current_cost = cost_max
 	_update_ui()
 	print_all_products()
-	check_special_blocks()
-	process_special_blocks_each_round()
 
 func _zoom_camera(delta: float, focus_pos: Vector2):
 	var new_zoom = camera.zoom * (1 + delta)
@@ -274,73 +272,12 @@ func print_all_products():
 		for x in range(width):
 			var idx = y * width + x
 			var cell = cells[idx]
-			row.append(str(cell.product_id))
+			if cell.product_ids.size() > 0:
+				var pid_strs = []
+				for pid in cell.product_ids:
+					pid_strs.append(str(pid))
+				row.append(",".join(pid_strs))
+			else:
+				row.append("-")
 		print(" ".join(row))
 	print(" ")
-
-func check_special_blocks():
-	var cells = grid.get_children()
-	for cell in cells:
-		# 只考虑矿物生成物（假设矿物id为0~8）
-		var minerals = []
-		for pid in cell.product_ids:
-			if pid >= 0 and pid <= 8:
-				minerals.append(pid)
-		if minerals.size() >= 2:
-			# 随机抽取一种特殊地块
-			var special_id = 9 + randi() % 3  # 9,10,11
-			if not special_id in cell.product_ids:
-				cell.product_ids.append(special_id)
-				cell.update_product_display()
-				cell.start_special_block_timer(special_id)  # 见下
-
-func process_special_blocks_each_round():
-	var cells = grid.get_children()
-	for cell in cells:
-		if cell.special_block_id != -1:
-			cell.special_block_timer -= 1
-			# 每回合触发效果
-			match cell.special_block_id:
-				9:  # 村庄
-					score += 10
-					current_cost += 1
-					replace_cross_cells(cell, 1)  # 十字形替换为地块1
-				10: # 祭坛
-					score += 5
-					current_cost += 2
-					replace_cross_cells(cell, 6)  # 十字形替换为地块6
-				11: # 矿坑
-					score += 20
-					replace_cross_cells(cell, 3)  # 十字形替换为地块3
-			if cell.special_block_timer <= 0:
-				# 变为指定地块并移除特殊生成物
-				if cell.special_block_id == 9:
-					cell.set_tile_id(1)
-				elif cell.special_block_id == 10:
-					cell.set_tile_id(6)
-				elif cell.special_block_id == 11:
-					cell.set_tile_id(3)
-				cell.product_ids.erase(cell.special_block_id)
-				cell.special_block_id = -1
-				cell.update_product_display()
-
-func replace_cross_cells(center_cell, tile_id):
-	var cells = grid.get_children()
-	var idx = cells.find(center_cell)
-	if idx == -1:
-		return
-	var x = idx % grid.columns
-	var y = idx / grid.columns
-	var directions = [
-		Vector2i(0, -1),  # 上
-		Vector2i(0, 1),   # 下
-		Vector2i(-1, 0),  # 左
-		Vector2i(1, 0)    # 右
-	]
-	for dir in directions:
-		var nx = x + dir.x
-		var ny = y + dir.y
-		if nx >= 0 and nx < grid.columns and ny >= 0 and ny < grid.get_child_count() / grid.columns:
-			var nidx = ny * grid.columns + nx
-			if nidx >= 0 and nidx < cells.size():
-				cells[nidx].set_tile_id(tile_id)
