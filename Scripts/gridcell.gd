@@ -92,63 +92,97 @@ func update_visual():
 		return
 	
 func element_react(elementID: int):
-	var before_tile = Tile_type
-	var Target_Tile: int = -1
-	match Tile_type:
-		0:
-			match elementID:
-				2:
-					Target_Tile = 6
-				4:
-					Target_Tile = 6
-		1:
-			match elementID:
-				1:
-					Target_Tile = 7
-				2:
-					Target_Tile = 3
-				4:
-					Target_Tile = 5
-		2:
-			match elementID:
-				1: 
-					Target_Tile = 1
-		3:
-			match elementID:
-				0:
-					Target_Tile = 1
-				4:
-					Target_Tile = 5
-		4:
-			match elementID:
-				2:
-					Target_Tile = 3
-		5:
-			match elementID:
-				1:
-					Target_Tile = 7
-		6:
-			match elementID:
-				0:
-					Target_Tile = 4
-				1:
-					Target_Tile = 0
-				2:
-					Target_Tile = 4
-				4:
-					Target_Tile = 5
-		7:
-			match elementID:
-				1:
-					Target_Tile = 4
-				2:
-					Target_Tile = 8
-				4:
-					Target_Tile = 5
-	# print(Target_Tile)
-	if Target_Tile != -1:
-		set_tile_id(Target_Tile)
-	try_generate_product_by_element(before_tile, elementID)
+	if elementID == 3:
+		# 风元素：吸收周围四格的生成物
+		var parent_grid = get_parent()
+		if parent_grid == null:
+			return
+		var cells = parent_grid.get_children()
+		var idx = cells.find(self)
+		if idx == -1:
+			return
+		var grid_columns = parent_grid.columns
+		var grid_rows = parent_grid.get_child_count() / grid_columns
+		var x = idx % grid_columns
+		var y = idx / grid_columns
+		var directions = [
+			Vector2i(0, -1),  # 上
+			Vector2i(0, 1),   # 下
+			Vector2i(-1, 0),  # 左
+			Vector2i(1, 0)    # 右
+		]
+		for dir in directions:
+			var nx = x + dir.x
+			var ny = y + dir.y
+			if nx >= 0 and nx < grid_columns and ny >= 0 and ny < grid_rows:
+				var nidx = ny * grid_columns + nx
+				if nidx >= 0 and nidx < cells.size():
+					var neighbor = cells[nidx]
+					# 吸收邻居的所有生成物（允许重复）
+					for pid in neighbor.product_ids:
+						product_ids.append(pid)
+					neighbor.product_ids.clear()
+					neighbor.update_product_display()
+		update_product_display()
+		print("风元素吸收后，本格生成物：", product_ids)
+	else:
+		var before_tile = Tile_type
+		var Target_Tile: int = -1
+		match Tile_type:
+			0:
+				match elementID:
+					2:
+						Target_Tile = 6
+					4:
+						Target_Tile = 6
+			1:
+				match elementID:
+					1:
+						Target_Tile = 7
+					2:
+						Target_Tile = 3
+					4:
+						Target_Tile = 5
+			2:
+				match elementID:
+					1: 
+						Target_Tile = 1
+			3:
+				match elementID:
+					0:
+						Target_Tile = 1
+					4:
+						Target_Tile = 5
+			4:
+				match elementID:
+					2:
+						Target_Tile = 3
+			5:
+				match elementID:
+					1:
+						Target_Tile = 7
+			6:
+				match elementID:
+					0:
+						Target_Tile = 4
+					1:
+						Target_Tile = 0
+					2:
+						Target_Tile = 4
+					4:
+						Target_Tile = 5
+			7:
+				match elementID:
+					1:
+						Target_Tile = 4
+					2:
+						Target_Tile = 8
+					4:
+						Target_Tile = 5
+		# print(Target_Tile)
+		if Target_Tile != -1:
+			set_tile_id(Target_Tile)
+		try_generate_product_by_element(before_tile, elementID)
 
 func tile_react(neighbors: Array):
 	var before_tile = Tile_type
