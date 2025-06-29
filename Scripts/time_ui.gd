@@ -6,7 +6,7 @@ extends Control
 
 var max_time: float = 2
 var current_time: float = 2
-var is_running: bool = true
+var is_running: bool = false
 
 signal time_up
 
