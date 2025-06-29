@@ -41,7 +41,8 @@ const Tile_React_Rules = [
 ]
 
 func _ready() -> void:
-	pass
+	z_as_relative = false
+	z_index = 10  #颜色优先级
 
 func change_color(color:Color):
 	var styleBox := get_theme_stylebox("panel").duplicate()
