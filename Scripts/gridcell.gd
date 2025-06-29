@@ -15,7 +15,7 @@ const Tiles_pic = [
 	preload("res://Assets/Object/tile_5.jpg"),
 	preload("res://Assets/Object/tile_6.jpg"),
 	preload("res://Assets/Object/tile_7.jpg"),
-	preload("res://Assets/World_Assets/world_tileset.png")
+	preload("res://Assets/Object/tile_8.png"),
 ]
 
 const Tiles_animation = [
@@ -39,7 +39,7 @@ const Tile_React_Weights = [
 	[100,  0,  0, 20,20,  0,70, 50,0],
 	[100,100,100,100,100,100,100,100,0],
 	[100, 50, 20, 20, 50, 30,  0,  0,100],
-	[0,100,0,0,20,20,0,0,0]
+	[0,100,0,0,20,20,0,0,0],
 ]
 
 #在此处修改规则
@@ -103,7 +103,7 @@ func element_react(elementID: int):
 				1:
 					Target_Tile = 7
 				2:
-					Target_Tile = 2
+					Target_Tile = 3
 				4:
 					Target_Tile = 5
 		2:
@@ -119,7 +119,7 @@ func element_react(elementID: int):
 		4:
 			match elementID:
 				2:
-					Target_Tile = 1
+					Target_Tile = 3
 		5:
 			match elementID:
 				1:
