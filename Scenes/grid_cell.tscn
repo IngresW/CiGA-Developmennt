@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://q6fk1ql3towu"]
+[gd_scene load_steps=10 format=3 uid="uid://q6fk1ql3towu"]
 
 [ext_resource type="Script" uid="uid://du3afyget1s5h" path="res://Scripts/gridcell.gd" id="1_a7rwb"]
 [ext_resource type="Texture2D" uid="uid://do1ntk75xufpg" path="res://Assets/Object/lava/1fc126b193b266785c8580c3c208eade.jpg" id="2_xb01k"]
-[ext_resource type="Texture2D" uid="uid://bkrmn6y5ljmb5" path="res://Assets/Object/lava/ca35ced857a4e98ba00349f80a3b25fe.jpg" id="3_ewbrc"]
+[ext_resource type="Texture2D" uid="uid://ct2qrvkr0esph" path="res://Assets/Object/lava/21f09ac504a9d146fe41e2ade4ba4dbf.jpg" id="3_40vdx"]
+[ext_resource type="Texture2D" uid="uid://ch862q55w16ec" path="res://Assets/Object/lava/dfe707fe72f6508089b4b4bc6dbfc01d.jpg" id="4_lrekf"]
 [ext_resource type="Texture2D" uid="uid://hbtsgychfe7y" path="res://Assets/Object/lava/dfa953cc4adb68fee681a9d2eafbdcb1.jpg" id="4_uqyw7"]
+[ext_resource type="Texture2D" uid="uid://cd18l0j0y3sg8" path="res://Assets/Object/lava/592cf1620247fef718e888f5915b06b7.jpg" id="7_ishqw"]
+[ext_resource type="Texture2D" uid="uid://nof1squcthpq" path="res://Assets/Object/lava/ffb7b8a582d756c8dbe38b173bd330d4.jpg" id="7_l8fba"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqexn"]
 border_width_left = 1
@@ -15,17 +18,26 @@ border_width_bottom = 1
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_xb01k")
+"texture": ExtResource("4_lrekf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ewbrc")
+"texture": ExtResource("7_l8fba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ishqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_40vdx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xb01k")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_uqyw7")
 }],
 "loop": true,
 "name": &"flow",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [node name="Grid_Cell" type="PanelContainer"]
@@ -47,4 +59,5 @@ visible = false
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_l8fba")
 animation = &"flow"
+frame_progress = 0.285613
 centered = false
