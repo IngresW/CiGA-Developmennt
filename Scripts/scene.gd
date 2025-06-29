@@ -7,9 +7,6 @@ extends Node2D
 @onready var timer_ui: Control = $CanvasLayer_UI/TimerUI
 @onready var label: Label = $CanvasLayer_UI/Label
 
-# vars for score calculation
-var score: int = 0
-
 var selected_element_type: int = -1
 var current_cost: int = 5
 var cost_max: int = 15
