@@ -55,6 +55,10 @@ const Tile_React_Rules = [
 	[ 8, 1, 8, 8, 4, 5, 8, 8, 8],
 	]
 
+const PRODUCTS = preload("res://Scripts/products.gd").PRODUCTS
+
+signal product_generated(product_id, score, cost)
+
 func _ready() -> void:
 	z_as_relative = false
 	z_index = 10  #颜色优先级
@@ -85,6 +89,7 @@ func update_visual():
 		return
 	
 func element_react(elementID: int):
+	var before_tile = Tile_type
 	var Target_Tile: int = -1
 	match Tile_type:
 		0:
@@ -139,8 +144,10 @@ func element_react(elementID: int):
 					Target_Tile = 5
 	print(Target_Tile)
 	set_tile_id(Target_Tile)
+	try_generate_product_by_element(before_tile, elementID)
 
 func tile_react(neighbors: Array):
+	var before_tile = Tile_type
 	# neighbors 是长度为4的数组，分别是上、下、左、右的地块类型
 	# 边界块不反应
 	if Tile_type == -1:
@@ -185,3 +192,18 @@ func tile_react(neighbors: Array):
 		target_tile = Tile_React_Rules[Tile_type][effect_tile]
 	
 	set_tile_id(target_tile)
+	try_generate_product_by_tile(before_tile, target_tile)
+
+func try_generate_product_by_element(tile, element):
+	for product in PRODUCTS:
+		var t = product.trigger
+		if t.type == "tile_by_element" and t.tile == tile and t.element == element:
+			if randf() < t.prob:
+				emit_signal("product_generated", product.id, product.score, product.cost)
+
+func try_generate_product_by_tile(from_tile, to_tile):
+	for product in PRODUCTS:
+		var t = product.trigger
+		if t.type == "tile_by_tile" and t.from == from_tile and t.to == to_tile:
+			if randf() < t.prob:
+				emit_signal("product_generated", product.id, product.score, product.cost)

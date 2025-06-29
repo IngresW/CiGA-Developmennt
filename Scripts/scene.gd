@@ -65,6 +65,7 @@ func _on_element_selected(element_type: int):
 
 func _on_time_up():
 	grid.settle_all_tiles()
+	_print_map()
 	current_cost += 2
 	if current_cost > cost_max:
 		current_cost = cost_max
@@ -132,20 +133,21 @@ func _reset_highlight():
 	for child: Control in grid.get_children():
 		child.change_color(Color(0.5, 0.5, 0.5, 0.5))
 
-
 func _place_element(TargetCell):
 	print("放置了元素类型 ", selected_element_type, " 在位置 ", TargetCell)
 	current_cost -= element_cost[selected_element_type]
 	
 	# 对目标单元格产生影响
 	TargetCell.element_react(selected_element_type)
-	
+	_sync_cell_to_map(TargetCell)
 	# 某些特定元素可以对周围产生影响
 	if _should_affect_surrounding(selected_element_type):
 		_affect_surrounding_cells(TargetCell, selected_element_type)
 	
 	_reset_highlight()
 	_update_ui()
+	_print_map()
+
 
 func _should_affect_surrounding(element_type: int) -> int:
 	# 定义哪些元素类型会影响周围，以及影响范围
@@ -178,12 +180,16 @@ func _affect_surrounding_cells(center_cell, element_type: int):
 			match element_type:
 				0: # 地元素
 					cell.element_react(element_type)
+					_sync_cell_to_map(cell)
 				1: # 火元素 - 燃烧效果
 					cell.element_react(element_type)
+					_sync_cell_to_map(cell)
 				2: # 水元素 - 湿润效果
 					cell.element_react(element_type)
+					_sync_cell_to_map(cell)
 				4: # 冰元素 - 冰冻效果
 					cell.element_react(element_type)
+					_sync_cell_to_map(cell)
 
 func _get_surrounding_cells(center_cell, range_type: int) -> Array:
 	var surrounding_cells = []
@@ -228,5 +234,18 @@ func _get_surrounding_cells(center_cell, range_type: int) -> Array:
 	
 	return surrounding_cells
 
+func _sync_cell_to_map(cell):
+	var cells = grid.get_children()
+	var idx = cells.find(cell)
+	if idx != -1:
+		var x = idx / grid.columns
+		var y = idx % grid.columns
+		grid.Map[x][y] = cell.Tile_type
+
 func _update_ui():
 	label.text = "Cost: %d / %d" % [current_cost, cost_max]
+	
+func _print_map():
+	for row in grid.Map:
+			print(row)
+	print(" ")
