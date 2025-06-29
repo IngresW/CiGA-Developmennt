@@ -7,6 +7,7 @@ extends Control
 var max_time: float = 2
 var current_time: float = 2
 var is_running: bool = false
+var is_pressed: bool = false
 
 signal time_up
 
@@ -27,6 +28,7 @@ func _process(delta):
 
 func _on_pause_button_pressed():
 	is_running = !is_running
+	is_pressed = !is_pressed
 	pause_button.text = "▶" if !is_running else "⏸"  # 运行时显示暂停符号，暂停时显示播放符号
 
 func reset_timer():
