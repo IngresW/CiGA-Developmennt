@@ -4,6 +4,7 @@ extends PanelContainer
 @export var Tile_type : int = -1
 
 @onready var texture_rect: TextureRect = $TextureRect
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 const Tiles_pic = [
 	preload("res://Assets/Object/tile_0.jpg"),
@@ -15,6 +16,7 @@ const Tiles_pic = [
 	preload("res://Assets/Object/tile_6.jpg"),
 	preload("res://Assets/Object/tile_7.jpg"),
 ]
+
 
 # 在此处修改随机权重
 const Tile_React_Weights = [
@@ -56,7 +58,17 @@ func set_tile_id(typeID: int):
 func update_visual():
 	if Tile_type == -1:
 		return
-	$TextureRect.texture = Tiles_pic[Tile_type]
+	
+	if Tile_type != 0:
+		$TextureRect.texture = Tiles_pic[Tile_type]
+		$TextureRect.visible = true
+		$AnimatedSprite2D.visible = false
+		return
+	else:
+		$AnimatedSprite2D.animation = "flow"
+		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.visible = true
+		$TextureRect.visible = false
 	
 func element_react(elementID: int):
 	var Target_Tile: int = -1

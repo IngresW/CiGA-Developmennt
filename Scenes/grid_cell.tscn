@@ -1,8 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://q6fk1ql3towu"]
+[gd_scene load_steps=7 format=3 uid="uid://q6fk1ql3towu"]
 
 [ext_resource type="Script" uid="uid://du3afyget1s5h" path="res://Scripts/gridcell.gd" id="1_a7rwb"]
+[ext_resource type="Texture2D" uid="uid://do1ntk75xufpg" path="res://Assets/Object/lava/1fc126b193b266785c8580c3c208eade.jpg" id="2_xb01k"]
+[ext_resource type="Texture2D" uid="uid://bkrmn6y5ljmb5" path="res://Assets/Object/lava/ca35ced857a4e98ba00349f80a3b25fe.jpg" id="3_ewbrc"]
+[ext_resource type="Texture2D" uid="uid://hbtsgychfe7y" path="res://Assets/Object/lava/dfa953cc4adb68fee681a9d2eafbdcb1.jpg" id="4_uqyw7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqexn"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l8fba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xb01k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ewbrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uqyw7")
+}],
+"loop": true,
+"name": &"flow",
+"speed": 5.0
+}]
 
 [node name="Grid_Cell" type="PanelContainer"]
 z_index = 2
@@ -17,3 +41,10 @@ script = ExtResource("1_a7rwb")
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_l8fba")
+animation = &"flow"
+centered = false
