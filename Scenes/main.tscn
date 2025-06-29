@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://d0wlgu46j1ndm"]
+[gd_scene load_steps=12 format=4 uid="uid://d0wlgu46j1ndm"]
 
 [ext_resource type="Script" uid="uid://b1crexlt6mjbm" path="res://Scripts/main.gd" id="1_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://c3mo7r4vuqip4" path="res://Assets/World_Assets/world_tileset.png" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://co55sgpy1wkol" path="res://Scripts/scene.gd" id="2_jjvhh"]
+[ext_resource type="Script" uid="uid://d2by05u00utad" path="res://Scripts/start_menu.gd" id="2_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://4f6ufktmxss6" path="res://Scenes/grid.tscn" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://4fkg3t610guv" path="res://canvas_layer_ui.gd" id="4_344ge"]
 [ext_resource type="PackedScene" uid="uid://cx4jlris5rtff" path="res://Scenes/Element/element_selector.tscn" id="4_kry3j"]
@@ -51,6 +52,15 @@ sources/0 = SubResource("TileSetAtlasSource_8gbba")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_d1ilt")
+
+[node name="StartMenu" type="CanvasLayer" parent="."]
+script = ExtResource("2_ynf5e")
+
+[node name="StartButton" type="Button" parent="StartMenu"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TutorialScene" type="Node2D" parent="."]
 
 [node name="Scene" type="Node2D" parent="."]
 script = ExtResource("2_jjvhh")
@@ -102,4 +112,5 @@ offset_right = 1078.0
 offset_bottom = 1077.0
 scale = Vector2(0.962939, 0.962939)
 
+[connection signal="pressed" from="StartMenu/StartButton" to="StartMenu" method="_on_start_button_pressed"]
 [connection signal="gui_input" from="Scene/Grid" to="Scene" method="_on_grid_gui_input"]

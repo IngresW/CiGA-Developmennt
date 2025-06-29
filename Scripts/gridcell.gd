@@ -17,6 +17,16 @@ const Tiles_pic = [
 	preload("res://Assets/Object/tile_7.jpg"),
 ]
 
+const Tiles_animation = [
+	"flow",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+]
 
 # 在此处修改随机权重
 const Tile_React_Weights = [
@@ -59,16 +69,17 @@ func update_visual():
 	if Tile_type == -1:
 		return
 	
-	if Tile_type != 0:
+	if Tile_type in [0,]:
+		$AnimatedSprite2D.animation = Tiles_animation[Tile_type]
+		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.visible = true
+		$TextureRect.visible = false
+		return
+	else:
 		$TextureRect.texture = Tiles_pic[Tile_type]
 		$TextureRect.visible = true
 		$AnimatedSprite2D.visible = false
 		return
-	else:
-		$AnimatedSprite2D.animation = "flow"
-		$AnimatedSprite2D.play()
-		$AnimatedSprite2D.visible = true
-		$TextureRect.visible = false
 	
 func element_react(elementID: int):
 	var Target_Tile: int = -1
