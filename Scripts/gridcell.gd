@@ -128,6 +128,10 @@ func element_react(elementID: int):
 
 func tile_react(neighbors: Array):
 	# neighbors 是长度为4的数组，分别是上、下、左、右的地块类型
+	# 边界块不反应
+	if Tile_type == -1:
+		return
+	
 	var effect_tile: int = -1
 	var target_tile: int = -1
 	# 开始处理随机 #
