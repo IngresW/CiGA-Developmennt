@@ -136,9 +136,97 @@ func _reset_highlight():
 func _place_element(TargetCell):
 	print("放置了元素类型 ", selected_element_type, " 在位置 ", TargetCell)
 	current_cost -= element_cost[selected_element_type]
+	
+	# 对目标单元格产生影响
 	TargetCell.element_react(selected_element_type)
+	
+	# 某些特定元素可以对周围产生影响
+	if _should_affect_surrounding(selected_element_type):
+		_affect_surrounding_cells(TargetCell, selected_element_type)
+	
 	_reset_highlight()
 	_update_ui()
+
+func _should_affect_surrounding(element_type: int) -> int:
+	# 定义哪些元素类型会影响周围，以及影响范围
+	# 返回值：0=不影响，1=九宫格(3x3)，2=右下三方向(当前+右+下+右下)
+	match element_type:
+		0: # 地元素 - 右下三方向
+			return 2
+		1: # 火元素 - 九宫格
+			return 1
+		2: # 水元素 - 右下三方向
+			return 2
+		4: # 冰元素 - 右下三方向
+			return 2
+		_:
+			return 0
+
+func _affect_surrounding_cells(center_cell, element_type: int):
+	# 获取影响范围类型
+	var range_type = _should_affect_surrounding(element_type)
+	if range_type == 0:
+		return
+	
+	# 根据范围类型获取周围的单元格
+	var surrounding_cells = _get_surrounding_cells(center_cell, range_type)
+	
+	# 对每个周围的单元格产生影响
+	for cell in surrounding_cells:
+		if cell and cell != center_cell:
+			# 根据元素类型决定影响方式
+			match element_type:
+				0: # 地元素
+					cell.element_react(element_type)
+				1: # 火元素 - 燃烧效果
+					cell.element_react(element_type)
+				2: # 水元素 - 湿润效果
+					cell.element_react(element_type)
+				4: # 冰元素 - 冰冻效果
+					cell.element_react(element_type)
+
+func _get_surrounding_cells(center_cell, range_type: int) -> Array:
+	var surrounding_cells = []
+	var cells = grid.get_children()
+	var center_index = cells.find(center_cell)
+	
+	if center_index == -1:
+		return surrounding_cells
+	
+	var center_x = center_index % grid.columns
+	var center_y = center_index / grid.columns
+	
+	match range_type:
+		1: # 九宫格范围：中心点及其周围8个方向 (3x3)
+			for dy in range(-1, 2):
+				for dx in range(-1, 2):
+					var new_x = center_x + dx
+					var new_y = center_y + dy
+					
+					# 检查边界
+					if new_x >= 0 and new_x < grid.columns and new_y >= 0 and new_y < grid.get_child_count() / grid.columns:
+						var index = new_y * grid.columns + new_x
+						if index >= 0 and index < cells.size():
+							surrounding_cells.append(cells[index])
+		
+		2: # 右下三方向范围：当前+右+下+右下
+			var directions = [
+				Vector2i(0, 0),   # 当前
+				Vector2i(1, 0),   # 右
+				Vector2i(0, 1),   # 下
+				Vector2i(1, 1)    # 右下
+			]
+			for dir in directions:
+				var new_x = center_x + dir.x
+				var new_y = center_y + dir.y
+				
+				# 检查边界
+				if new_x >= 0 and new_x < grid.columns and new_y >= 0 and new_y < grid.get_child_count() / grid.columns:
+					var index = new_y * grid.columns + new_x
+					if index >= 0 and index < cells.size():
+						surrounding_cells.append(cells[index])
+	
+	return surrounding_cells
 
 func _update_ui():
 	label.text = "Cost: %d / %d" % [current_cost, cost_max]
