@@ -15,32 +15,45 @@ const Tiles_pic = [
 	preload("res://Assets/Object/tile_5.jpg"),
 	preload("res://Assets/Object/tile_6.jpg"),
 	preload("res://Assets/Object/tile_7.jpg"),
+	preload("res://Assets/World_Assets/world_tileset.png")
 ]
 
+const Tiles_animation = [
+	"flow",
+	"grass",
+	"",
+	"water",
+	"",
+	"",
+	"",
+	"",
+]
 
 # 在此处修改随机权重
 const Tile_React_Weights = [
-	[  0  ,0,  0,  0,  0,  0,  0,  0],
-	[100,  0, 20, 20, 10,100,  0,  0],
-	[100,  50,  0,  0,  0, 70,  0,  0],
-	[100, 20, 10,  0, 20, 20,  0, 20],
-	[100, 10, 20, 20,  0,  0,  0,  0],
-	[100,  0,  0, 20,  0,  0,100, 70],
-	[100,100,100,100,100,100,100,100],
-	[100, 50, 20, 20, 50, 30,  0,  0],
+	[0  ,0,  0,  0,  0,  0,  0,100,100],
+	[50,  0, 20, 20, 10,100,  0,  0,0],
+	[100,  50,  0,  0,  0, 70,  0,  0,0],
+	[100, 20, 10,  0, 20, 20,  0, 20,0],
+	[100, 10, 20, 20,  0,  0,  0,  0,0],
+	[100,  0,  0, 20,20,  0,70, 50,0],
+	[100,100,100,100,100,100,100,100,0],
+	[100, 50, 20, 20, 50, 30,  0,  0,100],
+	[0,100,0,0,20,20,0,0,0]
 ]
 
 #在此处修改规则
 const Tile_React_Rules = [
-	[-1, 0, 0, 0, 0, 0, 0, 0],
-	[ 0,-1, 2, 2, 4, 1, 1, 1],
-	[ 7, 1,-1, 2, 2, 5, 2, 2],
-	[ 6, 3, 3,-1, 1, 3, 3, 1],
-	[ 6, 1, 4, 1,-1, 4, 4, 4],
-	[ 3, 5, 5, 5, 5,-1, 5, 1],
-	[ 6, 6, 6, 6, 6, 3,-1, 6],
-	[ 0, 1, 1, 1, 4, 1, 7,-1],
-]
+	[ -1, 0, 0, 0, 0, 0, 0, 0, 8],
+	[ 0,-1, 2, 2, 4, 1, 1, 1, 1],
+	[ 7, 1,-1, 2, 2, 5, 2, 2, 2],
+	[ 6, 3, 3,-1, 1, 3, 3, 1, 3],
+	[ 6, 1, 4, 1,-1, 5, 4, 4, 4],
+	[ 3, 5, 5, 5, 4,-1, 5, 1, 5],
+	[ 6, 6, 6, 6, 6, 3,-1, 6, 6],
+	[ 7, 1, 1, 1, 4, 1, 7,-1, 8],
+	[ 8, 1, 8, 8, 4, 5, 8, 8, 8],
+	]
 
 func _ready() -> void:
 	z_as_relative = false
@@ -59,16 +72,17 @@ func update_visual():
 	if Tile_type == -1:
 		return
 	
-	if Tile_type != 0:
+	if Tile_type in [0,1,3]:
+		$AnimatedSprite2D.animation = Tiles_animation[Tile_type]
+		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.visible = true
+		$TextureRect.visible = false
+		return
+	else:
 		$TextureRect.texture = Tiles_pic[Tile_type]
 		$TextureRect.visible = true
 		$AnimatedSprite2D.visible = false
 		return
-	else:
-		$AnimatedSprite2D.animation = "flow"
-		$AnimatedSprite2D.play()
-		$AnimatedSprite2D.visible = true
-		$TextureRect.visible = false
 	
 func element_react(elementID: int):
 	var Target_Tile: int = -1
@@ -120,7 +134,7 @@ func element_react(elementID: int):
 				1:
 					Target_Tile = 4
 				2:
-					Target_Tile = 1
+					Target_Tile = 8
 				4:
 					Target_Tile = 5
 	print(Target_Tile)
